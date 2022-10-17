@@ -25,7 +25,7 @@ error Lottery__UpkeepNotNeeded(uint256 currentBalance, uint256 numPlayers, uint2
  * @title A sample Raffle Contract
  * @author Nathan Moudakis
  * @notice This contract is for creating a untamperable decentralized smart contract
- * @dev This implements Chainlink VRF v2 and Chainlink Keepers
+ * @dev This implements Chainlink VRF Coordinator V2 and Chainlink Keepers
  */
 contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
     // Type Declarations
@@ -183,8 +183,16 @@ contract Lottery is VRFConsumerBaseV2, KeeperCompatibleInterface {
         return s_raffleState;
     }
 
+    function getInterval() public view returns (uint256) {
+        return i_interval;
+    }
+
     function getNumWords() public pure returns (uint256) {
         return NUM_WORDS;
+    }
+
+    function getCallBackGasLimit() public view returns (uint256) {
+        return i_callbackGasLimit;
     }
 
     function getRequestConfirmations() public pure returns (uint256) {

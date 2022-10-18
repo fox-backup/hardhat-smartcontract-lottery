@@ -44,11 +44,6 @@ module.exports = async function ({ getNamedAccounts, deployments }) {
         await verify(lottery.address, arguments);
     }
 
-    //     log("Enter lottery with command:");
-    //     const networkName = network.name == "hardhat" ? "localhost" : network.name;
-    //     log(`yarn hardhat run scripts/enterRaffle.js --network ${networkName}`);
-    //     log("----------------------------------------------------------");
-
     if (developmentChains.includes(network.name)) {
         await vrfCoordinatorV2Mock.addConsumer(subscriptionId, lottery.address);
 
